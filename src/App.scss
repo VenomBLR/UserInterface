@@ -575,6 +575,32 @@ Survey Component
 .assignButtonDiv {
   width: 100%;
 }
+.assignToCohorts {
+  background-color: none;
+  border-color: none;
+  width: 17%;
+  float: left;
+  margin: 2em 0 -.5em 0;
+}
+
+.assignToCohorts:hover {
+  color: #fff !important;
+}
+
+.sortByBtn {
+  color: black;
+  border-radius: 10px;
+  background-color: $revature-orange-light;
+  height: 40px;
+  width: 10%;
+  float: right;
+  border: none;
+  margin: 2em 0 -.5em 0;
+}
+
+.sortCohortContainer {
+  width: 100%;
+}
 
 .assignSurveyBtn {
   color: black;
@@ -611,6 +637,7 @@ User Dropdown
 .userDropdown {
   // background-color: $revature-orange-light;
   float: right;
+  // width: 100%;
 }
 
 .userDropdownBtn {
