@@ -23,23 +23,27 @@ interface IComponentState {
     listFiltered: ISurvey[],
     title: string,
     description: string,
-    filterOption: string
+    filterOption: string,
+    checked: boolean,
+    checkboxId: number,
 }
 
 export class AllSurveysComponent extends Component<IComponentProps, IComponentState> {
     constructor(props) {
         super(props);
         this.state = {
-            surveys: [],
-            surveysLoaded: false,
-            surveysToAssign: [],
-            redirectTo: null,
-            closingFilter: false,
-            listFiltered: [],
-            title: "",
-            description: "",
-            filterOption: "Filter By"
-        }
+          surveys: [],
+          surveysLoaded: false,
+          surveysToAssign: [],
+          redirectTo: null,
+          closingFilter: false,
+          listFiltered: [],
+          title: '',
+          description: '',
+          filterOption: 'Filter By',
+          checked: false,
+          checkboxId: 0,
+        };
     }
 
     componentDidMount() {
@@ -126,6 +130,15 @@ export class AllSurveysComponent extends Component<IComponentProps, IComponentSt
             closingFilter: false,
             filterOption: "Filter By"
         });
+    }
+
+    
+    clickRow = () =>  {
+        
+        console.log(this.state.checkboxId);
+        // this.state.checked
+        //   ? this.setState({ checked: false })
+        //   : this.setState({ checked: true });
     }
 
     checkFunc = (e) => {
@@ -221,7 +234,7 @@ export class AllSurveysComponent extends Component<IComponentProps, IComponentSt
             return <Redirect push to={this.state.redirectTo} />
         }
         console.log(this.state.surveys);
-        const sortOptions = ["Active", "Closed", "None"];
+        const sortOptions = ["Default", "Active", "Closed", "My Surveys"];
         return (
           <>
             {this.state.surveysLoaded ? (
@@ -402,13 +415,14 @@ export class AllSurveysComponent extends Component<IComponentProps, IComponentSt
                               filtered, // This.state.listFiltered is rendered if there is a filter.
                             ) => (
                               <tr
+                                onClick={this.clickRow}
+                                id={filtered.surveyId.toString()}
                                 key={filtered.surveyId}
                                 className='rev-table-row'>
                                 <td>
                                   <input
                                     type='checkbox'
                                     onChange={e => this.checkFunc(e)}
-                                    id={filtered.surveyId.toString()}
                                   />
                                 </td>
                                 <td>{filtered.title}</td>
@@ -454,6 +468,28 @@ export class AllSurveysComponent extends Component<IComponentProps, IComponentSt
                     )}
                   </tbody>
                 </Table>
+                {/* {1 > 3 && ( */}
+                {/* {this.props.totalPages > 0 && ( */}
+
+                <div className='row horizontal-centering vertical-centering'>
+                  <Button
+                    variant='button-color'
+                    className='rev-background-color div-child'>
+                    {/* onClick={this.decrementPage}> */}
+                    Prev
+                  </Button>
+                  <h6 className='div-child text-style'>
+                    Page 1 of 3{/* Page {this.props.currentPage + 1} of{' '} */}
+                    {/* {this.props.totalPages} */}
+                  </h6>
+                  <Button
+                    variant='button-color'
+                    className='rev-background-color div-child'>
+                    {/* onClick={this.incrementPage}> */}
+                    Next
+                  </Button>
+                </div>
+                {/* )} */}
                 {/* {this.state.surveys.length > 0 && (
                   <div className='assignButtonDiv'>
                     <SurveyModal

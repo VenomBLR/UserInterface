@@ -575,17 +575,6 @@ Survey Component
 .assignButtonDiv {
   width: 100%;
 }
-.assignToCohorts {
-  background-color: none;
-  border-color: none;
-  width: 17%;
-  float: left;
-  margin: 2em 0 -.5em 0;
-}
-
-.assignToCohorts:hover {
-  color: #fff !important;
-}
 
 .sortByBtn {
   color: black;
@@ -595,7 +584,7 @@ Survey Component
   width: 10%;
   float: right;
   border: none;
-  margin: 2em 0 -.5em 0;
+  margin: 2.5em 0 -.5em 0;
 }
 
 .sortCohortContainer {
@@ -612,10 +601,28 @@ Survey Component
   border: none;
 }
 
-.assignSurveyBtn:hover,
+// .assignSurveyBtn:hover,
 .assignSurveyBtn:active {
   background-color: $revature-orange-light;
   color: #565d61;
+}
+
+// .assignSurveyBtn:hover,
+// .assignSurveyBtn:active {
+//   background-color: $revature-orange-light;
+//   color: #565d61;
+// }
+
+.assignToCohorts {
+  background-color: none;
+  border-color: none;
+  width: 17%;
+  float: left;
+  margin: 2.5em 0 -.5em 0;
+}
+
+.assignToCohorts:hover {
+  color: white !important;
 }
 
 .assignSurveyModalHeader {
