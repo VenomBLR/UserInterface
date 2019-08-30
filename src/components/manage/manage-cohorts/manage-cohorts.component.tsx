@@ -23,6 +23,7 @@ export class ManageCohortsComponenent extends React.Component<IManageCohortsComp
     }
 
     async componentDidMount() {
+        
 
         const data = await this.getAllCohorts(this.props.currentPage);
         console.log('calling getAllCohorts in componentDidMount')
