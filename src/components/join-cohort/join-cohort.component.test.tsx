@@ -28,47 +28,48 @@ const mockProps :IJoinCohortProps = {
         listen:jest.fn().mockImplementation(),
         createHref:jest.fn().mockImplementation()
     },
-    login : {
+    login : { // This test is intended to be done for the case no user is logged in
+             // that way, the join cohort sign up is going to be rendered
         currentUser :{
-            firstName: "Mock first",
-            lastName: "Mock last",
-            email: "mock@mail.com",
-            roles: ["mock"]
+            firstName: "",
+            lastName: "",
+            email: "",
+            roles: []
         }
     },
     joinCohortState : {
         validToken: true,
         userToJoin:{
             userId:0,
-            email:"mockito@mail.com",
-            firstName:'Mock',
-            lastName:'Man',
-            phoneNumber:'123678',
+            email:"",
+            firstName:'',
+            lastName:'',
+            phoneNumber:'',
             trainingAddress:{
                 addressId:0,
-                street:'Mock ave',
-                alias:"Mocktown",
-                city:"Mockland",
-                country:"Mocka", 
-                state:"MCK", 
-                zip:'12678'
+                street:'',
+                alias:"",
+                city:"",
+                country:"", 
+                state:"", 
+                zip:''
             },
             personalAddress:{
                 addressId:0,
-                street:'Mock ave',
-                alias:"Mocktown",
-                city:"Mockland",
-                country:"Mocka", 
-                state:"MCK", 
-                zip:'12678'
+                street:'',
+                alias:"",
+                city:"",
+                country:"", 
+                state:"", 
+                zip:''
             },
             userStatus:{
                 statusId:0,
-                generalStatus:"Mocking",
-                specificStatus:"Specifically mocking",
+                generalStatus:"",
+                specificStatus:"",
                 virtual:false
             },
-            roles:['manager'],
+            roles:[],
             cohorts:[]
         },
         foundCohort:{
@@ -89,7 +90,7 @@ const mockProps :IJoinCohortProps = {
             endDate:'2019-03-15',
             users:[],
             trainer:{
-                userId:0,
+                userId:1,
             email:"mockito@mail.com",
             firstName:'Mock',
             lastName:'Man',
@@ -208,7 +209,7 @@ const mockProps :IJoinCohortProps = {
 };
 // Take into consideration the url and what changes when tha user is already logged in
 // vs user is completely new in the system.
-describe('JoinCohortComponent',() => {
+describe('JoinCohortComponent test',() => {
     test("There are two training locations",()=>{
         // Define the component to be tested with mock props
         const joinCohortPage = shallow(<JoinCohortComponent {...mockProps} />);

@@ -16,12 +16,17 @@ export const joinCohortTypes = {
     FAILED_TO_FIND_LOGGED_IN_USER: 'FAILED_TO_FIND_LOGGED_IN_USER'
 } 
 
-
 export const findCohortByToken = (token:string) => async (dispatch) => {
-    
     await cohortClient.findByToken(token)
     .then((response) => {
-        if(response.data){
+        // Action in case cohort was not found
+        if (!response.data) {
+            dispatch({
+                payload: {
+                    },
+                    type: joinCohortTypes.FAILED_TO_FIND_COHORT_BY_TOKEN
+            })
+        } else if(response.data) {
             dispatch({
                 payload: {
                     foundCohort: response.data
@@ -76,7 +81,7 @@ export const joinCohort = (user:IUser, token:string, history:History) => async (
             dispatch({
                 payload: {
                     },
-                    type: joinCohortTypes.JOIN_COHORT
+                    type: joinCohortTypes.FAILED_TO_JOIN_COHORT
             })
             toast.error('Please enter valid information'); 
         }
@@ -84,7 +89,7 @@ export const joinCohort = (user:IUser, token:string, history:History) => async (
             dispatch({
                 payload: {
                     },
-                    type: joinCohortTypes.JOIN_COHORT
+                    type: joinCohortTypes.FAILED_TO_FIND_COHORT_BY_TOKEN
             })
             toast.error('Cohort not found'); 
         }

@@ -95,12 +95,14 @@ export const joinCohortReducer = (state = initialState, action: any) => {
         case joinCohortTypes.FIND_COHORT_BY_TOKEN:
             return {
                 ...state,
-                foundCohort:action.payload.foundCohort
+                foundCohort:action.payload.foundCohort,
+                validToken:true
             }
         case joinCohortTypes.FAILED_TO_FIND_COHORT_BY_TOKEN:
             return {
                 ...state,
-                foundCohort:action.payload.foundCohort
+                foundCohort:action.payload.foundCohort,
+                validToken:false
             }
         case joinCohortTypes.FAILED_TO_JOIN_COHORT:
             return {
@@ -129,8 +131,8 @@ export const joinCohortReducer = (state = initialState, action: any) => {
                 userToJoin: action.payload.newUser
             }
 
-        case authTypes.LOGOUT:
-            return initialState;
+        // case authTypes.LOGOUT:
+        //     return initialState;
     }
     return state;
   }
