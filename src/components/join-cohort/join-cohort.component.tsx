@@ -1,37 +1,37 @@
-import React from 'react'
-import { Button, Input, Label, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Card } from 'reactstrap';
-import { IJoinCohortStateToProps, IJoinCohortDispatchToProps } from './join-cohort.container';
-import { IUser } from '../../model/user.model';
-import { BarLoader } from 'react-spinners';
+import React from 'react';
+import CreateUserComponent from '../create-user/create-user.component';
+import { Button } from 'reactstrap';
+import { connect } from "react-redux";
+import { IState } from '../../reducers';
+import { joinCohort, findLoggedInUser, findCohortByToken } from '../../actions/join-cohort/join-cohort.actions';
+import { IAuthState, IJoinCohortState } from "../../reducers/management";
+import { ICognitoUser } from "../../model/cognito-user.model";
+import { IUser } from "../../model/user.model";
+import { updateLocations } from '../../actions/address/address.actions';
+import { History } from "history";
 import { toast } from 'react-toastify';
+import { withRouter } from 'react-router-dom';
 
-const inputNames = {
-  EMAIL: 'NEW_USER_EMAIL',
-  FIRST_NAME: 'NEW_USER_FIRST_NAME',
-  LAST_NAME: 'NEW_USER_LAST_NAME',
-  PHONE: 'NEW_USER_PHONE'
+export interface IJoinCohortProps {
+  token: string,
+  login: IAuthState,
+  joinCohortState: IJoinCohortState,
+  history: History,
+  findCohortByToken:(token:string, history:History) => void,
+  joinCohort:(user:IUser, token:string, history:History) => void,
+  updateLocations: () => void,
+  findLoggedInUser: (user:ICognitoUser, history:History) => void
 }
 
-export interface IJoinCohortProps extends IJoinCohortStateToProps, IJoinCohortDispatchToProps {
-  // token: string,
-  // validToken: boolean,
-  // login: IAuthState,
-
-
-
-  // findCohortByToken: (token:string) => void,
-  // joinCohort:(user:ICognitoUser, token:string) => void
-
-}
-
-export class JoinCohortComponent extends React.Component<IJoinCohortProps, any> {
+export class JoinCohortComponent extends React.Component<IJoinCohortProps, IJoinCohortState> {
   constructor(props) {
     super(props)
   }
 
-  //assert cohort token is real
-  //if not display not a valid cohort link,
+  // assert cohort token is real
+  // if not display not a valid cohort link,
 
+<<<<<<< HEAD
   async componentDidMount(){
     await this.props.findCohortByToken(this.props.token);
     await this.props.updateLocations();
@@ -95,10 +95,20 @@ export class JoinCohortComponent extends React.Component<IJoinCohortProps, any> 
         virtual: false,
       },
       roles: [this.props.createUser.newUser.role],
-    }
-    this.props.updateNewUser(tempUser)
+=======
+  componentDidMount(){
+  this.props.updateLocations();
+  this.props.findCohortByToken(this.props.token, this.props.history);
   }
 
+  componentDidUpdate() {
+    if (this.props.login.currentUser.email && !this.props.joinCohortState.userToJoin.userId) {
+      this.props.findLoggedInUser(this.props.login.currentUser, this.props.history);
+>>>>>>> fcea897333021fcd0005f5de99353e2353029cb2
+    }
+  }
+
+<<<<<<< HEAD
   saveNewUser = async (e: React.FormEvent) => {
     e.preventDefault();
     const tempUser: IUser = {
@@ -139,11 +149,22 @@ export class JoinCohortComponent extends React.Component<IJoinCohortProps, any> 
     toast.info(message);
     this.props.history.push('/dashboard/home');
   }
+=======
+  joinCohort = () => {
+    if (this.props.joinCohortState.foundCohort.users.find((currentUser:IUser) => ( currentUser.userId === this.props.joinCohortState.userToJoin.userId))) {
+        this.props.history.push('/');
+        toast.info(`You are already in the ${this.props.joinCohortState.foundCohort.cohortName} cohort`);
+    } else {
+    this.props.joinCohort(this.props.joinCohortState.userToJoin, this.props.token, this.props.history);
+  }
+}
+>>>>>>> fcea897333021fcd0005f5de99353e2353029cb2
 
-  //join cohort window has username and cohort name and a join button
-  //after clicking join, take you to cohort page
+  // join cohort window has username and cohort name and a join button
+  // after clicking join, take you to cohort page
 
   render() {
+<<<<<<< HEAD
     if (this.props.joinCohortState.validToken) {
       // If new user just filled the sign up form, will be redirected automatically to the
       // cohort login page
@@ -272,14 +293,41 @@ export class JoinCohortComponent extends React.Component<IJoinCohortProps, any> 
             </form>
           </Card>
         )
-      }
-    } else {
-      //Not a valid link
+=======
+      const { login } = this.props;
+      // If new user just filled the sign up form, will be redirected automatically to the
+      // cohort login page
       return (
-        <div>
-          <p>not a real place</p>
-        </div>
+      <div>  
+      { login.currentUser.email ? 
+          <div>
+            <Button color='primary' onClick={this.joinCohort}>Join Cohort</Button>
+          </div>
+          :
+          <div>
+            <CreateUserComponent />    
+         </div>
+>>>>>>> fcea897333021fcd0005f5de99353e2353029cb2
+      }
+      </div>
       )
     }
-  }
 }
+
+const mapStateToProps = (state:IState, ownProps) => ({
+  token: ownProps.match.params.token,
+  // tslint:disable-next-line: object-literal-sort-keys
+  login: state.managementState.auth,
+  joinCohortState: state.managementState.joinCohort,
+  history: ownProps.history
+})
+
+
+const mapDispatchToProps = {
+  findCohortByToken,
+  findLoggedInUser,
+  joinCohort,
+  updateLocations
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(JoinCohortComponent))
