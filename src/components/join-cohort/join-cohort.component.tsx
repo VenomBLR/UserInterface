@@ -126,7 +126,8 @@ export class JoinCohortComponent extends React.Component<IJoinCohortProps, any> 
       roles: ['associate'],
     }
     await this.props.saveUserAssociate(tempUser);
-    // If this.joinCohort() is called here, the userToJoin property will be null
+    // If this.joinCohort() is called here, the userId property of tempUser will be 0.
+    // It should be called after the new user body is sent after saving it.
     // await this.joinCohort();
   }
 
@@ -171,7 +172,7 @@ export class JoinCohortComponent extends React.Component<IJoinCohortProps, any> 
       }
       // If user is logged in and is already part of the present cohort no need to re-join. 
       // Instead, user is redirected to the home page automatically.
-      else if (this.props.login.currentUser.email && 
+      else if (this.props.login.currentUser.email &&
               this.props.joinCohortState.foundCohort.users.find((u:IUser)=>(
                 u.userId == this.props.joinCohortState.userToJoin.userId)
               )

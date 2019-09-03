@@ -123,5 +123,4 @@ export const saveUserAssociate = (newUser: IUser) => async (dispatch) => {
             type: joinCohortTypes.FAILED_TO_CREATE_NEW_USER_FOR_COHORT
           })
       })
-   
   }
