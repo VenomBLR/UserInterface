@@ -96,21 +96,13 @@ const joinCohortReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 foundCohort:action.payload.foundCohort,
-<<<<<<< HEAD
-                validToken:true
-=======
                 validToken: true
->>>>>>> fcea897333021fcd0005f5de99353e2353029cb2
             }
         case joinCohortTypes.FAILED_TO_FIND_COHORT_BY_TOKEN:
             return {
                 ...state,
                 foundCohort:action.payload.foundCohort,
-<<<<<<< HEAD
-                validToken:false
-=======
                 validToken: false
->>>>>>> fcea897333021fcd0005f5de99353e2353029cb2
             }
         case joinCohortTypes.FAILED_TO_JOIN_COHORT:
             return {

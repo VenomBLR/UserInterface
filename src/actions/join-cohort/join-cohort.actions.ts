@@ -17,25 +17,11 @@ export const joinCohortTypes = {
     JOIN_COHORT: 'JOIN_COHORT'
 } 
 
-<<<<<<< HEAD
-export const findCohortByToken = (token:string) => async (dispatch) => {
-    await cohortClient.findByToken(token)
-    .then((response) => {
-        // Action in case cohort was not found
-        if (!response.data) {
-            dispatch({
-                payload: {
-                    },
-                    type: joinCohortTypes.FAILED_TO_FIND_COHORT_BY_TOKEN
-            })
-        } else if(response.data) {
-=======
 
 export const findCohortByToken = (token:string, history:History) => async (dispatch) => {
     try {
     const response = await cohortClient.findByToken(token);  
     if(response.data){
->>>>>>> fcea897333021fcd0005f5de99353e2353029cb2
             dispatch({
                 payload: {
                     foundCohort: response.data
@@ -139,29 +125,16 @@ export const joinCohort = (user:IUser, token:string, history:History) => async (
         if(join.status === 404){
             dispatch({
                 payload: {
-<<<<<<< HEAD
-                    },
-                    type: joinCohortTypes.FAILED_TO_JOIN_COHORT
-            })
-            toast.error('Please enter valid information'); 
-=======
                   },
                   type: joinCohortTypes.FAILED_TO_JOIN_COHORT
                   
             });
             history.push('/management/login');
             toast.error('Cohort not found');
->>>>>>> fcea897333021fcd0005f5de99353e2353029cb2
         }
         if(join.status === 400){
             dispatch({
                 payload: {
-<<<<<<< HEAD
-                    },
-                    type: joinCohortTypes.FAILED_TO_FIND_COHORT_BY_TOKEN
-            })
-            toast.error('Cohort not found'); 
-=======
                   },
                   type: joinCohortTypes.FAILED_TO_JOIN_COHORT
                   
@@ -169,7 +142,6 @@ export const joinCohort = (user:IUser, token:string, history:History) => async (
             history.push('/management/login');
             // tslint:disable-next-line: no-duplicate-string
             toast.error('Failed to Join Cohort');
->>>>>>> fcea897333021fcd0005f5de99353e2353029cb2
         }
         if(join.status === 405){
             dispatch({
@@ -213,11 +185,7 @@ export const saveUserAssociate = (newUser: IUser, history:History) => async (dis
             },
             type: joinCohortTypes.FAILED_TO_CREATE_NEW_USER_FOR_COHORT
           })
-<<<<<<< HEAD
-      })
-=======
           history.push('/management/login');
           toast.error('Failed To Save User');
       }
->>>>>>> fcea897333021fcd0005f5de99353e2353029cb2
   }
