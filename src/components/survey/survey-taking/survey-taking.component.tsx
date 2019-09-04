@@ -134,7 +134,7 @@ class SurveyTakingComponent extends Component<IComponentProps, IComponentState>{
                         "description": '',
                         "published": true,
                         "template": true,
-                        "title": ''
+                        "title": '',
                     },
                     "userEmailString": email
                 }

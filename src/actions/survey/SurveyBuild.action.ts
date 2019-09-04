@@ -22,7 +22,7 @@ export const CreatSurvey = (frmData: any, completedTasks: any[]) => async (dispa
     dateCreated: new Date(),
     closingDate: new Date(new Date().getTime() + 604800000),
     template: false,
-    published: true
+    published: true,
   };
   let dummyQuestionArray: IQuestion[] = [];
   let dummyAnswerArray: IAnswer[] = [];

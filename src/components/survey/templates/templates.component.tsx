@@ -27,7 +27,7 @@ interface IComponentState {
     openedTemplate: any,
     dateCreated: any,
     survey: any,
-    redirectTo: any
+    redirectTo: any,
 };
 
 class TemplatesComponent extends Component<TemplatesProps, IComponentState> {
@@ -143,7 +143,7 @@ class TemplatesComponent extends Component<TemplatesProps, IComponentState> {
             dateCreated: this.state.dateCreated,
             closingDate: this.state.survey.closingDate,
             template: false,
-            published: true
+            published: true,
         };
         for (let i = 0; i < this.state.survey.questionJunctions.length; i++) {
             let dummyquestion: IQuestion | any = {

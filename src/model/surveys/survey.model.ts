@@ -6,4 +6,5 @@ export interface ISurvey {
   closingDate: Date | null;
   template: boolean;
   published: boolean;
+  // creator: string;
 }

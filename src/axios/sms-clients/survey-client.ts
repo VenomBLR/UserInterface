@@ -46,6 +46,11 @@ export const surveyClient = {
     return surveys;
   },
 
+  // findAllByPage is used to setup pagination for surveys
+  // configured routes in controller, services, servicesimpl, repo
+  findAllByPage(page: number) {
+    return smsClient.get(surveyBaseRoute + `?page=${page}`);
+  },
     // we use the surveyroute and add the uri plus the parametor comig from the getsurveybyDescription
   // this is our fetch call on which if dont have a body back we will return
   // the empty array declare on the first line.

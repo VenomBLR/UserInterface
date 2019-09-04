@@ -9,7 +9,7 @@ const initialState: ISurveyBuildState = {
         dateCreated: new Date(),
         closingDate: null,
         template: false,
-        published: true
+        published: true,
     },
     dummyQuestionArray: [],
     dummyAnswerArray: [],

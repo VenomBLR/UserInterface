@@ -368,7 +368,7 @@ class surveyBuild extends React.Component<IComponentProps, IComponentState>{
                 <br />
                 {this.props.history.location.state && <input type="checkbox" name="template?" defaultChecked={this.props.history.location.state.displaySurvey.template}/> }
                 {!this.props.history.location.state && <input type="checkbox" name="template?"/> }
-                Is this a template?
+                &nbsp;Is this a template?
                 <br></br><br></br>
                 <label htmlFor="description">Survey Description</label>
                 {this.props.history.location.state && <textarea className="form-control" name="description" placeholder="Survey Description" required defaultValue={this.props.history.location.state.displaySurvey.description}></textarea>}
