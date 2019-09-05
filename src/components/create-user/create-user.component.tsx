@@ -2,11 +2,11 @@ import React from 'react'
 import { connect } from "react-redux";
 import { IState } from '../../reducers';
 import { Button, Input, Label, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Card } from 'reactstrap';
-import { joinCohort, saveUserAssociate } from '../../actions/join-cohort/join-cohort.actions'
+import { joinCohort, saveUserAssociate } from '../../actions/join-cohort/join-cohort.actions';
 import { ICreateUserState, IAddressState, IJoinCohortState } from "../../reducers/management";
 import { IAddress } from "../../model/address.model";
 import { IUser } from "../../model/user.model";
-import { updateNewUser, updateNewUserLocation, toggleLocationDropdown } from '../../actions/create-user/create-user.actions'
+import { updateNewUser, updateNewUserLocation, toggleLocationDropdown } from '../../actions/create-user/create-user.actions';
 import { updateLocations } from '../../actions/address/address.actions';
 import { History } from "history";
 import { withRouter } from 'react-router-dom';
@@ -72,7 +72,6 @@ export interface ICreateUserProps {
       const tempUser: IUser = {
         email: updatedNewUser.email,
         userId: 0,
-        // tslint:disable-next-line: object-literal-sort-keys
         firstName: updatedNewUser.firstName,
         lastName: updatedNewUser.lastName,
         phoneNumber: updatedNewUser.phoneNumber,
@@ -80,7 +79,6 @@ export interface ICreateUserProps {
         personalAddress: {
           addressId: 0,
           street: '',
-          // tslint:disable-next-line: object-literal-sort-keys
           alias: '',
           city: '',
           country: '',
@@ -89,7 +87,6 @@ export interface ICreateUserProps {
         },
         userStatus: {
           statusId: 0,
-          // tslint:disable-next-line: object-literal-sort-keys
           generalStatus: '',
           specificStatus: '',
           virtual: false,
@@ -99,24 +96,21 @@ export interface ICreateUserProps {
       this.props.updateNewUser(tempUser)
     }
   
-    saveNewUser = async (e: React.FormEvent) => {
-      e.preventDefault();
+    saveNewUser = async (event: React.FormEvent) => {
+      event.preventDefault();
       const tempUser: IUser = {
         userId: 0,
         userStatus: {
           statusId: 2,
-          // tslint:disable-next-line: object-literal-sort-keys
           generalStatus: 'Training',
           specificStatus: 'Training',
           virtual: false
         },
-        // tslint:disable-next-line: object-literal-sort-keys
         roles: ['associate'],
         trainingAddress: this.props.createUser.newUser.trainingAddress,
         personalAddress: {
           addressId: 0,
           street: '',
-          // tslint:disable-next-line: object-literal-sort-keys
           alias: '',
           city: '',
           country: '',
@@ -128,8 +122,13 @@ export interface ICreateUserProps {
         lastName: this.props.createUser.newUser.lastName,
         phoneNumber: this.props.createUser.newUser.phoneNumber
       }
+<<<<<<< HEAD
       // tslint:disable-next-line: no-invalid-await
       this.props.saveUserAssociate(tempUser, this.props.history);
+=======
+      await this.props.saveUserAssociate(tempUser, this.props.history);
+      this.props.joinCohort(this.props.joinCohortState.userToJoin, this.props.token, this.props.history);
+>>>>>>> 6e128fa30a80fe8a9434529adbe13d85eb7bf186
     }
 
     signIn = () => {
@@ -247,11 +246,17 @@ export interface ICreateUserProps {
   
   const mapDispatchToProps = {
     joinCohort,
+<<<<<<< HEAD
     updateNewUser,
     updateNewUserLocation,
     updateLocations,
+=======
+    saveUserAssociate,
+>>>>>>> 6e128fa30a80fe8a9434529adbe13d85eb7bf186
     toggleLocationDropdown,
-    saveUserAssociate
+    updateLocations,
+    updateNewUser,
+    updateNewUserLocation
   }
   
   export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CreateUserComponent))
