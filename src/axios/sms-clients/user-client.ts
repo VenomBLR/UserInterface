@@ -5,7 +5,7 @@ import { IUser } from "../../model/user.model";
 const usersContext = '/user-service/users'
 
 export const userClient = {
-    saveUser(newUser: IUser) {
+    async saveUser(newUser: IUser) {
         return smsClient.post(usersContext, newUser);
     },
     findAllByCohortId: (cohortId: number) => {

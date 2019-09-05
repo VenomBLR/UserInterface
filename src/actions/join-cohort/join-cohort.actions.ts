@@ -119,7 +119,7 @@ export const joinCohort = (user:IUser, token:string, history:History) => async (
                     },
                     type: joinCohortTypes.JOIN_COHORT
             });
-            history.push('/');
+            history.push('/management/login');
             toast.success('Joined Cohort');
         }
         if(join.status === 404){
@@ -167,7 +167,7 @@ export const joinCohort = (user:IUser, token:string, history:History) => async (
 export const saveUserAssociate = (newUser: IUser, history:History) => async (dispatch) => {
     try {
     const resp = await userClient.saveUser(newUser);
-      if (resp) {
+      if (resp.data.userId) {
         dispatch({
             payload: {
                 newUser: resp.data

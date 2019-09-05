@@ -68,7 +68,7 @@ export class JoinCohortComponent extends React.Component<IJoinCohortProps, IJoin
           // If the token exists in the database
           this.props.joinCohortState.validToken ?
             (
-              login.currentUser.email ? 
+              login.currentUser.email ?
               <>
                 <Button color='primary' onClick={this.joinCohort}>Join Cohort</Button>
               </>

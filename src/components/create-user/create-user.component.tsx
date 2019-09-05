@@ -10,6 +10,7 @@ import { updateNewUser, updateNewUserLocation, toggleLocationDropdown } from '..
 import { updateLocations } from '../../actions/address/address.actions';
 import { History } from "history";
 import { withRouter } from 'react-router-dom';
+import { BarLoader } from 'react-spinners';
 
 const inputNames = {
     EMAIL: 'NEW_USER_EMAIL',
@@ -128,8 +129,7 @@ export interface ICreateUserProps {
         phoneNumber: this.props.createUser.newUser.phoneNumber
       }
       // tslint:disable-next-line: no-invalid-await
-      await this.props.saveUserAssociate(tempUser, this.props.history);
-      this.props.joinCohort(this.props.joinCohortState.userToJoin, this.props.token, this.props.history);
+      this.props.saveUserAssociate(tempUser, this.props.history);
     }
 
     signIn = () => {
@@ -140,8 +140,11 @@ export interface ICreateUserProps {
     // after clicking join, take you to cohort page
   
     render() {
+      this.props.joinCohortState.userToJoin.userId &&
+      this.props.joinCohort(this.props.joinCohortState.userToJoin, this.props.token, this.props.history)
      const { createUser, addresses } = this. props;
      return (
+      !this.props.joinCohortState.userToJoin.userId ? 
        <Card
         className="join-cohort-signup-card">
          <form onSubmit={this.saveNewUser}>
@@ -224,6 +227,11 @@ export interface ICreateUserProps {
            <Button color="link" onClick={this.signIn}>Already have an account? Sign in</Button>
          </form>
         </Card>
+        :
+        <p>
+          Going to cohort login page
+          <BarLoader />
+        </p>
           )
         }
       }
@@ -241,7 +249,6 @@ export interface ICreateUserProps {
     joinCohort,
     updateNewUser,
     updateNewUserLocation,
-    // tslint:disable-next-line: object-literal-sort-keys
     updateLocations,
     toggleLocationDropdown,
     saveUserAssociate
