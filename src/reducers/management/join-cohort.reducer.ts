@@ -129,20 +129,12 @@ const joinCohortReducer = (state = initialState, action: any) => {
                 ...state,
                 userToJoin: action.payload.newUser
             }
-<<<<<<< HEAD
-
-        // case authTypes.LOGOUT:
-        //     return initialState;
-    }
-    return state;
-=======
             
         case authTypes.LOGOUT:
             return { ...initialState };
 
         default:
             return { ...state };
->>>>>>> 6e128fa30a80fe8a9434529adbe13d85eb7bf186
   }
 }
 

@@ -122,13 +122,8 @@ export interface ICreateUserProps {
         lastName: this.props.createUser.newUser.lastName,
         phoneNumber: this.props.createUser.newUser.phoneNumber
       }
-<<<<<<< HEAD
       // tslint:disable-next-line: no-invalid-await
       this.props.saveUserAssociate(tempUser, this.props.history);
-=======
-      await this.props.saveUserAssociate(tempUser, this.props.history);
-      this.props.joinCohort(this.props.joinCohortState.userToJoin, this.props.token, this.props.history);
->>>>>>> 6e128fa30a80fe8a9434529adbe13d85eb7bf186
     }
 
     signIn = () => {
@@ -246,13 +241,7 @@ export interface ICreateUserProps {
   
   const mapDispatchToProps = {
     joinCohort,
-<<<<<<< HEAD
-    updateNewUser,
-    updateNewUserLocation,
-    updateLocations,
-=======
     saveUserAssociate,
->>>>>>> 6e128fa30a80fe8a9434529adbe13d85eb7bf186
     toggleLocationDropdown,
     updateLocations,
     updateNewUser,

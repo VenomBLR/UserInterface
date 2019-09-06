@@ -81,7 +81,7 @@ export class JoinCohortComponent extends React.Component<IJoinCohortProps, IJoin
             (
               // Avoid showing "Cohort not found" if the data hasn't being fetched yet.
               // Instead, use a bar loader.
-              this.props.joinCohortState.foundCohort ?
+              this.props.joinCohortState.foundCohort.cohortId ?
                 (
                   <>
                     <Card>
@@ -92,7 +92,10 @@ export class JoinCohortComponent extends React.Component<IJoinCohortProps, IJoin
               :
                 (
                   <>
-                    <BarLoader/>
+                    <div>
+                      <BarLoader/>
+                    </div>
+                    
                   </>
                 )
             )
