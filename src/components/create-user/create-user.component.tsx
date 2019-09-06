@@ -121,12 +121,7 @@ export interface ICreateUserProps {
         lastName: this.props.createUser.newUser.lastName,
         phoneNumber: this.props.createUser.newUser.phoneNumber
       }
-<<<<<<< HEAD
-      // tslint:disable-next-line: no-invalid-await
-      this.props.saveUserAssociate(tempUser, this.props.history);
-=======
       this.props.saveUserAssociate(tempUser, this.props.token, this.props.history);
->>>>>>> 47a46258796651e03996c595076f9ca5fd43dbce
     }
 
     signIn = () => {
@@ -137,15 +132,8 @@ export interface ICreateUserProps {
     // after clicking join, take you to cohort page
   
     render() {
-<<<<<<< HEAD
-      this.props.joinCohortState.userToJoin.userId &&
-      this.props.joinCohort(this.props.joinCohortState.userToJoin, this.props.token, this.props.history)
-     const { createUser, addresses } = this. props;
-=======
      const { createUser, addresses } = this.props;
->>>>>>> 47a46258796651e03996c595076f9ca5fd43dbce
      return (
-      !this.props.joinCohortState.userToJoin.userId ? 
        <Card
         className="join-cohort-signup-card">
          <form onSubmit={this.saveNewUser}>
@@ -228,11 +216,6 @@ export interface ICreateUserProps {
            <Button color="link" onClick={this.signIn}>Already have an account? Sign in</Button>
          </form>
         </Card>
-        :
-        <p>
-          Going to cohort login page
-          <BarLoader />
-        </p>
           )
         }
       }

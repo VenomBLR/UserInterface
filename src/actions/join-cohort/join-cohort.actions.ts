@@ -116,13 +116,8 @@ export const joinCohort = (user:IUser, token:string, history:History) => async (
 
 export const saveUserAssociate = (newUser: IUser, token: string, history:History) => async (dispatch) => {
     try {
-<<<<<<< HEAD
-    const resp = await userClient.saveUser(newUser);
-      if (resp.data.userId) {
-=======
     const response = await userClient.saveUser(newUser);
       if (response) {
->>>>>>> 47a46258796651e03996c595076f9ca5fd43dbce
         dispatch({
             payload: {
                 newUser: response.data
